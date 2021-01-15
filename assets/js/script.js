@@ -7,7 +7,7 @@ $(document).ready(function(){
     $("#displayCity").hide();
     $("#fiveDay").hide();
 
-    //api call for currently searched city
+//api call for currently searched city
     function displayCityForecast(city){
         var apiKey = "d6563c1f7289474849eef3ceaf635e1d";
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
@@ -34,4 +34,23 @@ $(document).ready(function(){
             $.ajax({
                 url: queryURL,
                 method: "GET"
-            }).then(function(response){}
+            }).then(function(response){
+//apply class for UV index 
+            var uvIndex = response.value;
+            $("#displayCityUVindex").removeClass("favorable");
+            $("#displayCityUVindex").removeClass("moderate");
+            $("#displayCityUVindex").removeClass("severe");
+                if (uvIndex <= 2.9){
+                    $("#displayCityUVindex").addClass("favorable");
+                } else if (uvIndex >= 3 && uvIndex <= 7.9){
+                    $("#displayCityUVindex").addClass("moderate");
+                } else {
+                    $("#displayCityUVindex").addClass("severe");
+                };
+
+                    $("#displayCityUVindex").text(response.value);
+                });   
+
+                $("#displayCityUVindex").show();   
+        }); 
+    };
