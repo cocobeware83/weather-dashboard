@@ -54,3 +54,11 @@ $(document).ready(function(){
                 $("#displayCityUVindex").show();   
         }); 
     };
+
+                // TO DO LIST:
+
+// begin api call for 5 day forecast
+
+//clear search and populate new lists for new searches
+
+//access searches from local storage
