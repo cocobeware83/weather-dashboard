@@ -3,7 +3,7 @@
 $(document).ready(function(){
     var cities = [];
     $("#displayCity").hide();
-    $("#fiveDay").hide();
+    $("#extended5").hide();
 
 //api call for currently searched city
     function displayCityForecast(city){
@@ -51,7 +51,7 @@ $(document).ready(function(){
 // begin api call for 5 day forecast
 function fiveDayForecast(city){
     var apiKey = "d6563c1f7289474849eef3ceaf635e1d"
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
+    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
 
     $.ajax({
         url: queryURL,
@@ -63,10 +63,10 @@ function fiveDayForecast(city){
             var weatherIcon = response.list[i].weather[0].icon;
             var temperatureF = (response.list[i].main.temp - 273.15) * 1.80 + 32;
                 
-            $("#date" + counter).text(date);
+            $("#date-" + counter).text(date);
             $("#icon" + counter).attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png");
-            $("#temp" + counter).text(temperatureF.toFixed(2) + " \u00B0F");
-            $("#humidity" + counter).text(response.list[i].main.humidity + "%"); counter++;};
+            $("#temp-" + counter).text(temperatureF.toFixed(2) + " \u00B0F");
+            $("#humidity-" + counter).text(response.list[i].main.humidity + "%"); counter++;};
             $("#extended5").show();   
             });
             };
@@ -75,17 +75,20 @@ function searchedCities(city){
     var citiesListed = $("<li>").text(city)
     citiesListed.addClass("searchedCity");
     $("#searchedCity").append(citiesListed);};
+// stopping point
+
+//Clear input for new search
+function getCities(){
+    $("#searchedCity").empty();
+    for (var i = 0; i < cities.length; i++) { 
+        searchedCities(cities[i]);
+    };
+};
+
+function weather(city){
+    displayCityForecast(city);
+    fiveDayForecast(city);
+};
 
 
 
-
-//list recently searched cities
-    
-
-                // TO DO LIST:
-
-
-
-//clear search and populate new lists for new searches
-
-//access searches from local storage
