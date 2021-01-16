@@ -1,9 +1,7 @@
 //API key for later use =  d6563c1f7289474849eef3ceaf635e1d
 
 $(document).ready(function(){
-
     var cities = [];
-
     $("#displayCity").hide();
     $("#fiveDay").hide();
 
@@ -19,12 +17,12 @@ $(document).ready(function(){
             var weatherIcon = response.weather[0].icon;
             var date = $("<h2>").text(moment().format('l'));
             var icon = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png"); 
-            var tempFar = (response.main.temp - 273.15) * 1.80 + 32;
+            var tempFarenheit = (response.main.temp - 273.15) * 1.80 + 32;
                 
             $("#displayCityName").text(response.name);
             $("#displayCityName").append(date);
             $("#displayCityName").append(icon);
-            $("#displayCityTemp").text(tempFar.toFixed(2) + " \u00B0F");
+            $("#displayCityTemp").text(tempFarenheit.toFixed(2) + " \u00B0F");
             $("#displayCityHumidity").text(response.main.humidity + "%");
             $("#displayCityWind").text(response.wind.speed + "MPH");
 
@@ -45,19 +43,48 @@ $(document).ready(function(){
                 } else if (uvIndex >= 3 && uvIndex <= 7.9){
                     $("#displayCityUVindex").addClass("moderate");
                 } else {
-                    $("#displayCityUVindex").addClass("severe");
+                    $("#displayCityUVindex").addClass("severe");};
+                    $("#displayCityUVindex").text(response.value);});   
+                    $("#displayCity").show();}); 
                 };
 
-                    $("#displayCityUVindex").text(response.value);
-                });   
+// begin api call for 5 day forecast
+function fiveDayForecast(city){
+    var apiKey = "d6563c1f7289474849eef3ceaf635e1d"
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
 
-                $("#displayCityUVindex").show();   
-        }); 
-    };
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response){
+        var counter = 1
+        for(var i=0; i < response.list.length; i += 8){
+            var date = moment(response.list[i].dt_txt).format("l");
+            var weatherIcon = response.list[i].weather[0].icon;
+            var temperatureF = (response.list[i].main.temp - 273.15) * 1.80 + 32;
+                
+            $("#date" + counter).text(date);
+            $("#icon" + counter).attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png");
+            $("#temp" + counter).text(temperatureF.toFixed(2) + " \u00B0F");
+            $("#humidity" + counter).text(response.list[i].main.humidity + "%"); counter++;};
+            $("#extended5").show();   
+            });
+            };
+
+function searchedCities(city){
+    var citiesListed = $("<li>").text(city)
+    citiesListed.addClass("searchedCity");
+    $("#searchedCity").append(citiesListed);};
+
+
+
+
+//list recently searched cities
+    
 
                 // TO DO LIST:
 
-// begin api call for 5 day forecast
+
 
 //clear search and populate new lists for new searches
 
