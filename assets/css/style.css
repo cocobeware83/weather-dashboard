@@ -1,5 +1,28 @@
-/* style cards, and main city output when you get it to show */
+/*navbar stylingggggggg*/
+.navbar-brand{
+    left: 40%;
+    position: relative;
+    font-size:xx-large;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
+/* styling for search button */
+#searchBtn {
+    border-color:dodgerblue;
+    border-radius: 10%;
+    color: white;
+}
+  
+.fas {
+    font-size: 20px;
+    transition: all .3s ease-in-out;
+}
+
+#extended5 {
+    display:flex;
+    justify-content:space-evenly;
+    
+}
 /*styling for UV index conditions */
 .favorable {
     border-radius: 10px;
@@ -21,3 +44,10 @@
     background-color: red;
     color: white;
 } 
+
+/*styling for footer*/
+.footer {
+    padding: 3%;
+    background-color: white;
+    position: relative;
+}
