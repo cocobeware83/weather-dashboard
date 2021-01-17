@@ -51,7 +51,7 @@ $(document).ready(function(){
 // begin api call for 5 day forecast
 function fiveDayForecast(city){
     var apiKey = "d6563c1f7289474849eef3ceaf635e1d"
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
 
     $.ajax({
         url: queryURL,
