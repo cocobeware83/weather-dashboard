@@ -20,7 +20,11 @@
 }
 
 /*styling for 5 day forecast*/
-
+#extended5 {
+    display:flex;
+    justify-content:space-evenly;
+    
+}
 /*styling for UV index conditions */
 .favorable {
     border-radius: 10px;
