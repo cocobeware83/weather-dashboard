@@ -75,20 +75,44 @@ function searchedCities(city){
     var citiesListed = $("<li>").text(city)
     citiesListed.addClass("searchedCity");
     $("#searchedCity").append(citiesListed);};
-// stopping point
 
 //Clear input for new search
 function getCities(){
     $("#searchedCity").empty();
     for (var i = 0; i < cities.length; i++) { 
         searchedCities(cities[i]);
-    };
-};
+    };};
 
 function weather(city){
     displayCityForecast(city);
-    fiveDayForecast(city);
-};
+    fiveDayForecast(city);};
+function init() {
+// retrieve city list from local storage
+    var storedCities = JSON.parse(localStorage.getItem("searches"));
+    if (storedCities) {
+        cities = storedCities;
+        getCities();
+        weather(cities[cities.length -1]);
+    };};
+init();
+
+//Click event to save user input in local storage
+$("#searchBtn").click(function(){
+    var cityInputs = $(this).siblings("#inputCity").val().trim();
+    $("#inputCity").val("");
+    if (cityInputs !== ""){
+        if (cities.indexOf(cityInputs)== -1){
+            cities.push(cityInputs);
+            localStorage.setItem("searches",JSON.stringify(cities));
+            searchedCities(cityInputs);
+        };
+        weather(cityInputs);};
+});
+$("#searchedCity").on("click", ".searchedCity", function(){
+    var cityOnButton = $(this).text();
+    weather(cityOnButton);
+});
+});
 
 
 
