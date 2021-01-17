@@ -1,6 +1,5 @@
 /*navbar styling*/
 .navbar-brand{
-    left: 40%;
     position: relative;
     font-size:xx-large;
     font-family:Arial, Helvetica, sans-serif;
@@ -23,7 +22,6 @@
 
 /*styling for 5 day forecast*/
 #extended5 {
-    display:flex;
     justify-content:space-evenly;
     
 }
