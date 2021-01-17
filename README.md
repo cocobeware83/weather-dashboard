@@ -22,4 +22,4 @@
 
 ## Contributor
 * **Cory Neel**, University of Texas Coding Bootcamp Student
-* [Check Out My Personal Proile Here](https://cocobeware83.github.io/coryneel/)
+* [Check Out My Personal Profile Here](https://cocobeware83.github.io/coryneel/)
