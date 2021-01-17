@@ -6,7 +6,11 @@
 }
 
 /* styling for search button */
-
+.cardlist {
+    border:lightslategrey;
+    border-style: ridge;
+    border-width: 1px;
+}
 #searchBtn {
     border-color:dodgerblue;
     border-radius: 10%;
@@ -21,6 +25,10 @@
 
 
 /*styling for 5 day forecast*/
+h3 {
+    padding-top: 1rem;
+}
+
 #extended5 {
     display: flex;
     flex-wrap: wrap;
